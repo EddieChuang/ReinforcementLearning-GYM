@@ -34,8 +34,7 @@ class QNetwork:
         h = tf.keras.layers.Dense(128, activation='relu', name=self.name + '_hidden1')(h)  # (batch_size, 24)
         self.q = tf.keras.layers.Dense(n_action, name=self.name + '_output')(h)  # (batch_size, 2)
 
-        self.loss = tf.losses.mean_squared_error(labels=self.value, predictions=self.q)  # (batch_size, 2)
-        self.loss = tf.reduce_mean(self.loss)  # ()
+        self.loss = tf.losses.mean_squared_error(labels=self.value, predictions=self.q)  # ()
 
         self.train_op = tf.train.AdamOptimizer(learning_rate=0.001).minimize(self.loss)
 
@@ -217,7 +216,7 @@ def evaluation():
 
 
 def main():
-    # train()
+    train()
     evaluation()
 
    
